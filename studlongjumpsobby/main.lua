@@ -363,7 +363,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	end)
 	
 	SetClipboardSavedButton.Activated:Connect(function()
-		local string_ = currentPositions[1]
+		local string_ = tostring(currentPositions[1])
 		for i, v in pairs(currentPositions) do
 			if i ~= 1 then
 				string_ += "," .. tostring(v)
