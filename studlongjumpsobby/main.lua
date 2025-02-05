@@ -260,6 +260,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	local TweenService = game:GetService("TweenService")
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
+	local HttpService = game:GetService("HttpService")
 	
 	local RebirthEvent = ReplicatedStorage:WaitForChild("RebirthEvent")
 	
@@ -362,7 +363,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	end)
 	
 	SetClipboardSavedButton.Activated:Connect(function()
-		setclipboard(tostring(currentPositions))
+		setclipboard(tostring(HttpService:JSONEncode(currentPositions)))
 	end)
 	
 	RebirthFarmButton.Activated:Connect(function()
