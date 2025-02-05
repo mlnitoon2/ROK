@@ -194,7 +194,7 @@ SaveCurrentPosButton.TextWrapped = true
 UICorner_9.Parent = SaveCurrentPosButton
 
 Template.Name = "Template"
-Template.Parent = game.StarterGui.ScreenGui.MainFrame.GUIHandler
+Template.Parent = MainFrame
 Template.AnchorPoint = Vector2.new(0.5, 0.5)
 Template.BackgroundColor3 = Color3.fromRGB(78, 77, 95)
 Template.BorderColor3 = Color3.fromRGB(0, 0, 0)
