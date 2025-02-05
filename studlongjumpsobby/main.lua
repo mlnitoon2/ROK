@@ -363,7 +363,13 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	end)
 	
 	SetClipboardSavedButton.Activated:Connect(function()
-		setclipboard(tostring(HttpService:JSONEncode(currentPositions)))
+		local string_ = currentPositions[1]
+		for i, v in pairs(currentPositions) do
+			if i ~= 1 then
+				string_ += "," .. v
+			end
+		end
+		setclipboard(tostring(HttpService:JSONEncode(string_)))
 	end)
 	
 	RebirthFarmButton.Activated:Connect(function()
