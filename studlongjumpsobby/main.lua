@@ -357,7 +357,7 @@ local function YCWI_fake_script() -- MainFrame.GUIHandler
 		task.wait(0)
 		if Character and HumanoidRootPart then
 			if not farming then
-				HRPPos = Vector3.new(math.round(HumanoidRootPart.Position.X),math.round(HumanoidRootPart.Position.Y),math.round(HumanoidRootPart.Position.Z))
+				HRPPos = Vector3.new(math.round(HumanoidRootPart.Position.X),math.round(HumanoidRootPart.Position.Y - 0.25),math.round(HumanoidRootPart.Position.Z))
 				CurrentPosLabel.Text = "HRP Pos: " .. tostring(HRPPos)
 			else
 				if currentPos == #currentPositions then
