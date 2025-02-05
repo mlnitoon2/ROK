@@ -35,6 +35,7 @@ local UICorner_12 = Instance.new("UICorner")
 --Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Enabled = false
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 
@@ -45,7 +46,7 @@ MainFrame.BackgroundColor3 = Color3.fromRGB(58, 59, 67)
 MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(0.499607831, 0, 0.499308407, 0)
-MainFrame.Size = UDim2.new(0, 576, 0, 379)
+MainFrame.Size = UDim2.new(0.451764703, 0, 0.694139183, 0)
 MainFrame.Visible = false
 
 UICorner.Parent = MainFrame
@@ -54,7 +55,7 @@ TextLabel.Parent = MainFrame
 TextLabel.BackgroundColor3 = Color3.fromRGB(74, 76, 90)
 TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(0, 576, 0, 50)
+TextLabel.Size = UDim2.new(1, 0, 0.131926119, 0)
 TextLabel.Font = Enum.Font.Ubuntu
 TextLabel.Text = "Stud Long Jumps Obby GUI"
 TextLabel.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -72,7 +73,7 @@ CheckpointsFrame.BackgroundColor3 = Color3.fromRGB(78, 77, 95)
 CheckpointsFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CheckpointsFrame.BorderSizePixel = 0
 CheckpointsFrame.Position = UDim2.new(0.215277776, 0, 0.540897071, 0)
-CheckpointsFrame.Size = UDim2.new(0, 218, 0, 274)
+CheckpointsFrame.Size = UDim2.new(0.378472209, 0, 0.722955167, 0)
 
 UICorner_3.Parent = CheckpointsFrame
 
@@ -83,7 +84,7 @@ ScrollingFrame.BackgroundTransparency = 1.000
 ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0, 0, 0.153284669, 0)
-ScrollingFrame.Size = UDim2.new(0, 218, 0, 232)
+ScrollingFrame.Size = UDim2.new(1, 0, 0.846715331, 0)
 ScrollingFrame.ZIndex = 3
 
 UIListLayout.Parent = ScrollingFrame
@@ -98,7 +99,7 @@ TextLabel_2.Parent = CheckpointsFrame
 TextLabel_2.BackgroundColor3 = Color3.fromRGB(82, 82, 99)
 TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_2.BorderSizePixel = 0
-TextLabel_2.Size = UDim2.new(0, 218, 0, 36)
+TextLabel_2.Size = UDim2.new(1, 0, 0.131386861, 0)
 TextLabel_2.Font = Enum.Font.Ubuntu
 TextLabel_2.Text = "Saved Checkpoints"
 TextLabel_2.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -115,7 +116,7 @@ CurrentPosLabel.BackgroundColor3 = Color3.fromRGB(74, 76, 90)
 CurrentPosLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CurrentPosLabel.BorderSizePixel = 0
 CurrentPosLabel.Position = UDim2.new(0.446180552, 0, 0.218997359, 0)
-CurrentPosLabel.Size = UDim2.new(0, 302, 0, 50)
+CurrentPosLabel.Size = UDim2.new(0.524305582, 0, 0.131926119, 0)
 CurrentPosLabel.Font = Enum.Font.Ubuntu
 CurrentPosLabel.Text = "HRP Pos:"
 CurrentPosLabel.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -132,7 +133,7 @@ ClearCheckpointsButton.BackgroundColor3 = Color3.fromRGB(74, 76, 90)
 ClearCheckpointsButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ClearCheckpointsButton.BorderSizePixel = 0
 ClearCheckpointsButton.Position = UDim2.new(0.446180552, 0, 0.411609501, 0)
-ClearCheckpointsButton.Size = UDim2.new(0, 146, 0, 50)
+ClearCheckpointsButton.Size = UDim2.new(0.253472209, 0, 0.131926119, 0)
 ClearCheckpointsButton.Font = Enum.Font.Ubuntu
 ClearCheckpointsButton.Text = "Clear Saved Checkpoints"
 ClearCheckpointsButton.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -149,7 +150,7 @@ CreditsLabel.BackgroundTransparency = 1.000
 CreditsLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CreditsLabel.BorderSizePixel = 0
 CreditsLabel.Position = UDim2.new(0, 0, 0.920844316, 0)
-CreditsLabel.Size = UDim2.new(0, 576, 0, 30)
+CreditsLabel.Size = UDim2.new(1, 0, 0.0791556761, 0)
 CreditsLabel.Font = Enum.Font.Ubuntu
 CreditsLabel.Text = "© 2016 ROK INC"
 CreditsLabel.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -166,7 +167,7 @@ RebirthFarmButton.BackgroundColor3 = Color3.fromRGB(74, 76, 90)
 RebirthFarmButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 RebirthFarmButton.BorderSizePixel = 0
 RebirthFarmButton.Position = UDim2.new(0.446180552, 0, 0.598944604, 0)
-RebirthFarmButton.Size = UDim2.new(0, 302, 0, 50)
+RebirthFarmButton.Size = UDim2.new(0.524305582, 0, 0.131926119, 0)
 RebirthFarmButton.Font = Enum.Font.Ubuntu
 RebirthFarmButton.Text = "Start Rebirth Farming"
 RebirthFarmButton.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -182,7 +183,7 @@ SaveCurrentPosButton.BackgroundColor3 = Color3.fromRGB(74, 76, 90)
 SaveCurrentPosButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 SaveCurrentPosButton.BorderSizePixel = 0
 SaveCurrentPosButton.Position = UDim2.new(0.717013896, 0, 0.411609501, 0)
-SaveCurrentPosButton.Size = UDim2.new(0, 146, 0, 50)
+SaveCurrentPosButton.Size = UDim2.new(0.253472209, 0, 0.131926119, 0)
 SaveCurrentPosButton.Font = Enum.Font.Ubuntu
 SaveCurrentPosButton.Text = "Save Current Pos For Checkpoint"
 SaveCurrentPosButton.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -199,7 +200,7 @@ Template.BackgroundColor3 = Color3.fromRGB(78, 77, 95)
 Template.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Template.BorderSizePixel = 0
 Template.Position = UDim2.new(0.458715558, 0, 0.092128098, 0)
-Template.Size = UDim2.new(0, 185, 0, 36)
+Template.Size = UDim2.new(0.321180552, 0, 0.0949868038, 0)
 
 UICorner_10.Parent = Template
 
@@ -209,7 +210,7 @@ TextLabel_3.BackgroundTransparency = 1.000
 TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_3.BorderSizePixel = 0
 TextLabel_3.Position = UDim2.new(-0.000299154752, 0, 0, 0)
-TextLabel_3.Size = UDim2.new(0, 185, 0, 38)
+TextLabel_3.Size = UDim2.new(INF, 0, INF, 0)
 TextLabel_3.Font = Enum.Font.Ubuntu
 TextLabel_3.Text = "#1: 6,6,6"
 TextLabel_3.TextColor3 = Color3.fromRGB(132, 133, 157)
@@ -226,7 +227,7 @@ ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.0494117662, 0, 0.831730783, 0)
-ImageButton.Size = UDim2.new(0, 100, 0, 96)
+ImageButton.Size = UDim2.new(0.0784313753, 0, 0.17582418, 0)
 ImageButton.Image = "rbxassetid://86374083744758"
 
 UICorner_12.CornerRadius = UDim.new(0, 20)
@@ -234,7 +235,7 @@ UICorner_12.Parent = ImageButton
 
 -- Scripts:
 
-local function YGTWU_fake_script() -- MainFrame.GUIHandler 
+local function YCWI_fake_script() -- MainFrame.GUIHandler 
 	local script = Instance.new('LocalScript', MainFrame)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -376,8 +377,8 @@ local function YGTWU_fake_script() -- MainFrame.GUIHandler
 	
 	print("GUI Handler loaded in " .. tick() - startTime .. " seconds")
 end
-coroutine.wrap(YGTWU_fake_script)()
-local function GNWSX_fake_script() -- ImageButton.Dragify 
+coroutine.wrap(YCWI_fake_script)()
+local function KPNXWAV_fake_script() -- ImageButton.Dragify 
 	local script = Instance.new('LocalScript', ImageButton)
 
 	--This script has been modified by MetaliumWorks (@jgfuhjkkl_2) [mw/ʍɯ]
@@ -420,4 +421,4 @@ local function GNWSX_fake_script() -- ImageButton.Dragify
 	
 	dragify(script.Parent)
 end
-coroutine.wrap(GNWSX_fake_script)()
+coroutine.wrap(KPNXWAV_fake_script)()
