@@ -243,8 +243,8 @@ ImageButton.AnchorPoint = Vector2.new(0.5, 0.5)
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.0494117662, 0, 0.831730783, 0)
-ImageButton.Size = UDim2.new(0.161, 0, 0.846, 0)
+ImageButton.Position = UDim2.new(0.161, 0, 0.846, 0)
+ImageButton.Size = UDim2.new(0.0784313753, 0, 0.17582418, 0)
 ImageButton.Image = "rbxassetid://86374083744758"
 
 UICorner_13.CornerRadius = UDim.new(0, 20)
@@ -405,7 +405,7 @@ local function ZPNBNEW_fake_script() -- ImageButton.Dragify
 	--This script has been modified by MetaliumWorks (@jgfuhjkkl_2) [mw/ʍɯ]
 	
 	local UIS = game:GetService("UserInputService")
-	function dragify(Frame)
+	function dragify2(Frame)
 	    dragToggle = nil
 	    dragSpeed = 0.25
 	    dragInput = nil
@@ -440,6 +440,6 @@ local function ZPNBNEW_fake_script() -- ImageButton.Dragify
 	    end)
 	end
 	
-	dragify(script.Parent)
+	dragify2(script.Parent)
 end
 coroutine.wrap(ZPNBNEW_fake_script)()
