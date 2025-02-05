@@ -362,7 +362,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	end)
 	
 	SetClipboardSavedButton.Activated:Connect(function()
-		setclipboard(currentPositions)
+		setclipboard(tostring(currentPositions))
 	end)
 	
 	RebirthFarmButton.Activated:Connect(function()
@@ -376,7 +376,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	end)
 	
 	while true do
-		task.wait(0)
+		task.wait(0.05)
 		if Character and HumanoidRootPart then
 			if not farming then
 				HRPPos = Vector3.new(math.round(HumanoidRootPart.Position.X),math.round(HumanoidRootPart.Position.Y),math.round(HumanoidRootPart.Position.Z))
