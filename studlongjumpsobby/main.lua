@@ -274,7 +274,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 	
 	local CheckpointsFrame = MainFrame.CheckpointsFrame
 	
-	local CheckpointTemplate = script.Template
+	local CheckpointTemplate = Template
 	
 	local player = Players.LocalPlayer
 	
