@@ -29,13 +29,14 @@ local Template = Instance.new("Frame")
 local UICorner_10 = Instance.new("UICorner")
 local TextLabel_3 = Instance.new("TextLabel")
 local UICorner_11 = Instance.new("UICorner")
-local ImageButton = Instance.new("ImageButton")
+local SetClipboardSavedButton = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
+local ImageButton = Instance.new("ImageButton")
+local UICorner_13 = Instance.new("UICorner")
 
 --Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.Enabled = true
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 
@@ -194,7 +195,7 @@ SaveCurrentPosButton.TextWrapped = true
 UICorner_9.Parent = SaveCurrentPosButton
 
 Template.Name = "Template"
-Template.Parent = MainFrame
+Template.Parent = ScreenGui.MainFrame
 Template.AnchorPoint = Vector2.new(0.5, 0.5)
 Template.BackgroundColor3 = Color3.fromRGB(78, 77, 95)
 Template.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -221,6 +222,22 @@ TextLabel_3.TextWrapped = true
 
 UICorner_11.Parent = TextLabel_3
 
+SetClipboardSavedButton.Name = "SetClipboardSavedButton"
+SetClipboardSavedButton.Parent = MainFrame
+SetClipboardSavedButton.BackgroundColor3 = Color3.fromRGB(74, 76, 90)
+SetClipboardSavedButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SetClipboardSavedButton.BorderSizePixel = 0
+SetClipboardSavedButton.Position = UDim2.new(0.446180552, 0, 0.753628016, 0)
+SetClipboardSavedButton.Size = UDim2.new(0.524305582, 0, 0.131926119, 0)
+SetClipboardSavedButton.Font = Enum.Font.Ubuntu
+SetClipboardSavedButton.Text = "Save Checkpoints to Clipboard"
+SetClipboardSavedButton.TextColor3 = Color3.fromRGB(132, 133, 157)
+SetClipboardSavedButton.TextScaled = true
+SetClipboardSavedButton.TextSize = 20.000
+SetClipboardSavedButton.TextWrapped = true
+
+UICorner_12.Parent = SetClipboardSavedButton
+
 ImageButton.Parent = ScreenGui
 ImageButton.AnchorPoint = Vector2.new(0.5, 0.5)
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -230,12 +247,12 @@ ImageButton.Position = UDim2.new(0.0494117662, 0, 0.831730783, 0)
 ImageButton.Size = UDim2.new(0.0784313753, 0, 0.17582418, 0)
 ImageButton.Image = "rbxassetid://86374083744758"
 
-UICorner_12.CornerRadius = UDim.new(0, 20)
-UICorner_12.Parent = ImageButton
+UICorner_13.CornerRadius = UDim.new(0, 20)
+UICorner_13.Parent = ImageButton
 
 -- Scripts:
 
-local function YCWI_fake_script() -- MainFrame.GUIHandler 
+local function SUVIQN_fake_script() -- MainFrame.GUIHandler 
 	local script = Instance.new('LocalScript', MainFrame)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -250,13 +267,14 @@ local function YCWI_fake_script() -- MainFrame.GUIHandler
 	local ClearCheckpointsButton = MainFrame.ClearCheckpointsButton
 	local SaveCurrentPosButton = MainFrame.SaveCurrentPosButton
 	local RebirthFarmButton = MainFrame.RebirthFarmButton
+	local SetClipboardSavedButton = MainFrame.SetClipboardSavedButton
 	
 	local CurrentPosLabel = MainFrame.CurrentPosLabel
 	local CreditsLabel = MainFrame.CreditsLabel
 	
 	local CheckpointsFrame = MainFrame.CheckpointsFrame
 	
-	local CheckpointTemplate = Template
+	local CheckpointTemplate = script.Template
 	
 	local player = Players.LocalPlayer
 	
@@ -343,6 +361,10 @@ local function YCWI_fake_script() -- MainFrame.GUIHandler
 		updateCheckpoints()
 	end)
 	
+	SetClipboardSavedButton.Activated:Connect(function()
+		setclipboard(currentPositions)
+	end)
+	
 	RebirthFarmButton.Activated:Connect(function()
 		farming = not farming
 		
@@ -357,7 +379,7 @@ local function YCWI_fake_script() -- MainFrame.GUIHandler
 		task.wait(0)
 		if Character and HumanoidRootPart then
 			if not farming then
-				HRPPos = Vector3.new(math.round(HumanoidRootPart.Position.X),math.round(HumanoidRootPart.Position.Y - 0.25),math.round(HumanoidRootPart.Position.Z))
+				HRPPos = Vector3.new(math.round(HumanoidRootPart.Position.X),math.round(HumanoidRootPart.Position.Y),math.round(HumanoidRootPart.Position.Z))
 				CurrentPosLabel.Text = "HRP Pos: " .. tostring(HRPPos)
 			else
 				if currentPos == #currentPositions then
@@ -365,7 +387,6 @@ local function YCWI_fake_script() -- MainFrame.GUIHandler
 				end
 				currentPos = (currentPos == #currentPositions) and 1 or (currentPos + 1)
 				
-				task.wait(0.1)
 				Character:PivotTo(CFrame.new(currentPositions[currentPos]))
 			end
 		end
@@ -377,8 +398,8 @@ local function YCWI_fake_script() -- MainFrame.GUIHandler
 	
 	print("GUI Handler loaded in " .. tick() - startTime .. " seconds")
 end
-coroutine.wrap(YCWI_fake_script)()
-local function KPNXWAV_fake_script() -- ImageButton.Dragify 
+coroutine.wrap(SUVIQN_fake_script)()
+local function ZPNBNEW_fake_script() -- ImageButton.Dragify 
 	local script = Instance.new('LocalScript', ImageButton)
 
 	--This script has been modified by MetaliumWorks (@jgfuhjkkl_2) [mw/ʍɯ]
@@ -421,4 +442,4 @@ local function KPNXWAV_fake_script() -- ImageButton.Dragify
 	
 	dragify(script.Parent)
 end
-coroutine.wrap(KPNXWAV_fake_script)()
+coroutine.wrap(ZPNBNEW_fake_script)()
