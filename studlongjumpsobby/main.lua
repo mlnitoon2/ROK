@@ -366,7 +366,7 @@ local function SUVIQN_fake_script() -- MainFrame.GUIHandler
 		local string_ = currentPositions[1]
 		for i, v in pairs(currentPositions) do
 			if i ~= 1 then
-				string_ += "," .. v
+				string_ += "," .. tostring(v)
 			end
 		end
 		setclipboard(tostring(HttpService:JSONEncode(string_)))
