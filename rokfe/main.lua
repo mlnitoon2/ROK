@@ -120,7 +120,7 @@ local OverlayFakeToggle = SettingsSection:NewToggle({
 
 local ReanimateButton = MainSection:NewButton({
 	Name = "Reanimate", -- Name of the button | string, required
-	Description = "Reanimates your character",  -- Description of the button | string, optional 
+	Description = "Reanimates your character using the configured settings",  -- Description of the button | string, optional 
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Krypton/main/Module.luau"))()
 	end,
