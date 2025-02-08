@@ -70,15 +70,14 @@ local FlingToggle = SettingsTab:NewToggle({
 	end,
 })
 
-local WaitTimeTextbox = SettingsTab:NewTextBox({
-	Name = "Wait Time", -- Name of the textbox | string, required
-	PlaceholderText = "Yields the CharacterAdded to make sure all the components are ready to use.", -- placeholder text of the textbox | string, optional
-	Text = "Lorem Impulsum", -- text of the textbox | string, optional
-	Trigger = "FocusLost", -- trigger that will execute the callback ( FocusLost or TextChanged ) | string, optional
+local WaitTimeSlider = SettingsSection:NewSlider({
+	Name = "Wait Time", -- Name of the dropdown | string, required
+	Description = "Yields the CharacterAdded to make sure all the components are ready to use.",  -- Description of the dropdown | string, optional 
+	MinMax = {"0.25", "0.5"}, -- the minimum and maximum states of the slider | table, required
+	Increment = 0.05, -- the increment the slider increases by | number required
+	CurrentValue = 0.25, -- default value | number, required
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
-		if tonumber(value) then
-			Configuration.WaitTime = value
-		end
+		Configuration.WaitTime = value
 	end,
 })
 
