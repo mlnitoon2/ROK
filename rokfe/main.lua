@@ -62,9 +62,9 @@ Configuration = {
 }
 
 local FlingToggle = SettingsSection:NewToggle({
-	Name = "Fling", -- Name of the toggle | string, required
-	Description = "Uses your server rig to fling people, Left Mouse Click must be held down to enable flinging state upon respawn, the server rig will follow your mouse and attach to body parts until you let the button off.",  -- Description of the toggle | string, optional 
-	CurrentState = true, -- default state of the toggle | bool, optional
+	Name = "Fling", -- Name of the toggle 
+	Description = "Uses your server rig to fling people, use left mouse button",  -- Description of the toggle | string, optional 
+	CurrentState = false, -- default state of the toggle | bool, optional
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
 		Configuration.Flinging = value
 	end,
@@ -122,7 +122,8 @@ local ReanimateButton = MainSection:NewButton({
 	Name = "Reanimate", -- Name of the button | string, required
 	Description = "Reanimates your character using the configured settings",  -- Description of the button | string, optional 
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Krypton/main/Module.luau"))()
+		        SettingsSection:Remove()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Krypton/main/Module.luau"))()
 	end,
 })
 
