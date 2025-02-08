@@ -19,7 +19,7 @@ local rolibwaita = loadstring(game:HttpGet("https://codeberg.org/Blukez/rolibwai
 local Window = rolibwaita:NewWindow({
 	Name = "ROK FE", -- Name of window | string, required
 	Keybind = "RightShift", -- Keybind to open and close this window | string, required
-	UseCoreGui = true, -- Whether to use coregui / gethui as the gui parent | bool, optional
+	UseCoreGui = false, -- Whether to use coregui / gethui as the gui parent | bool, optional
 	PrintCredits = true -- Whether to print ui library credits and info in the console | bool, optional
 })
 
@@ -27,8 +27,6 @@ local SettingsTab = Window:NewTab({
 	Name = "Settings", -- Name of the tab | string, required
 	Icon = "rbxassetid://7245838712" -- Icon for the tab button | string, optional
 })
-
-local separator = Window:NewSeparator()
 
 local MainTab = Window:NewTab({
 	Name = "Main", -- Name of the tab | string, required
