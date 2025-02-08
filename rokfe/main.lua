@@ -72,8 +72,8 @@ local FlingToggle = SettingsSection:NewToggle({
 
 local WaitTimeSlider = SettingsSection:NewSlider({
 	Name = "Wait Time", -- Name of the dropdown | string, required
-	Description = "Yields the CharacterAdded to make sure all the components are ready to use.",  -- Description of the dropdown | string, optional 
-	MinMax = {"0.25", "0.5"}, -- the minimum and maximum states of the slider | table, required
+	Description = "The wait time in between loading and reanimating.",  -- Description of the dropdown | string, optional 
+	MinMax = {"0.10", "1"}, -- the minimum and maximum states of the slider | table, required
 	Increment = 0.05, -- the increment the slider increases by | number required
 	CurrentValue = 0.25, -- default value | number, required
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
@@ -83,7 +83,7 @@ local WaitTimeSlider = SettingsSection:NewSlider({
 
 local NoCollisionToggle = SettingsSection:NewToggle({
 	Name = "No Collision", -- Name of the toggle | string, required
-	Description = "⚠WARNING: In some cases you might get automatically under the map due to your collisions being barely there⚠\nDisables your client rig collisions, letting you clip through walls",  -- Description of the toggle | string, optional 
+	Description = "(May cause you to fall out of the map) Disables collisions, allowing you to click through walls",  -- Description of the toggle | string, optional 
 	CurrentState = false, -- default state of the toggle | bool, optional
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
 		Configuration.NoCollisions = value
@@ -92,7 +92,7 @@ local NoCollisionToggle = SettingsSection:NewToggle({
 
 local AntiVoidToggle = SettingsSection:NewToggle({
 	Name = "Anti Void", -- Name of the toggle | string, required
-	Description = "Avoid falling into the void, If you fall into the void you will be sent back to either SpawnLocation or the offset when you reanimated at.",  -- Description of the toggle | string, optional 
+	Description = "Prevents falling into the void by teleporting above the void",  -- Description of the toggle | string, optional 
 	CurrentState = true, -- default state of the toggle | bool, optional
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
 		Configuration.AntiVoiding = value
@@ -101,7 +101,7 @@ local AntiVoidToggle = SettingsSection:NewToggle({
 
 local DisableScriptsToggle = SettingsSection:NewToggle({
 	Name = "Disable Character Scripts", -- Name of the toggle | string, required
-	Description = "⚠WARNING: In very special cases, disabling this may break some parts of the experience⚠\nDisables any local scripts from the server rig to avoid any tampering with client rig.",  -- Description of the toggle | string, optional 
+	Description = "Disables server scripts on your rig to prevent interference",  -- Description of the toggle | string, optional 
 	CurrentState = false, -- default state of the toggle | bool, optional
 	Callback = function(value) -- code executed on interaction with the element | function,  optional
 		Configuration.DisableCharacterScripts = value
