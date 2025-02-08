@@ -38,7 +38,7 @@ local SettingsSection = SettingsTab:NewSection({
 	Description = "Customize your settings before you reanimate", -- Description of the section | string, optional 
 })
 
-local MainSection = SettingsTab:NewSection({
+local MainSection = MainTab:NewSection({
 	Name = "Main", -- Name of the section | string, required
 	Description = "Main Stuff", -- Description of the section | string, optional 
 })
@@ -61,7 +61,7 @@ Configuration = {
 	Hats = nil, -- Set to nil if you want to use defaults.
 }
 
-local FlingToggle = SettingsTab:NewToggle({
+local FlingToggle = SettingsSection:NewToggle({
 	Name = "Fling", -- Name of the toggle | string, required
 	Description = "Uses your server rig to fling people, Left Mouse Click must be held down to enable flinging state upon respawn, the server rig will follow your mouse and attach to body parts until you let the button off.",  -- Description of the toggle | string, optional 
 	CurrentState = true, -- default state of the toggle | bool, optional
@@ -81,7 +81,7 @@ local WaitTimeSlider = SettingsSection:NewSlider({
 	end,
 })
 
-local NoCollisionToggle = SettingsTab:NewToggle({
+local NoCollisionToggle = SettingsSection:NewToggle({
 	Name = "No Collision", -- Name of the toggle | string, required
 	Description = "⚠WARNING: In some cases you might get automatically under the map due to your collisions being barely there⚠\nDisables your client rig collisions, letting you clip through walls",  -- Description of the toggle | string, optional 
 	CurrentState = false, -- default state of the toggle | bool, optional
@@ -90,7 +90,7 @@ local NoCollisionToggle = SettingsTab:NewToggle({
 	end,
 })
 
-local AntiVoidToggle = SettingsTab:NewToggle({
+local AntiVoidToggle = SettingsSection:NewToggle({
 	Name = "Anti Void", -- Name of the toggle | string, required
 	Description = "Avoid falling into the void, If you fall into the void you will be sent back to either SpawnLocation or the offset when you reanimated at.",  -- Description of the toggle | string, optional 
 	CurrentState = true, -- default state of the toggle | bool, optional
@@ -99,7 +99,7 @@ local AntiVoidToggle = SettingsTab:NewToggle({
 	end,
 })
 
-local DisableScriptsToggle = SettingsTab:NewToggle({
+local DisableScriptsToggle = SettingsSection:NewToggle({
 	Name = "Disable Character Scripts", -- Name of the toggle | string, required
 	Description = "⚠WARNING: In very special cases, disabling this may break some parts of the experience⚠\nDisables any local scripts from the server rig to avoid any tampering with client rig.",  -- Description of the toggle | string, optional 
 	CurrentState = false, -- default state of the toggle | bool, optional
@@ -108,7 +108,7 @@ local DisableScriptsToggle = SettingsTab:NewToggle({
 	end,
 })
 
-local OverlayFakeToggle = SettingsTab:NewToggle({
+local OverlayFakeToggle = SettingsSection:NewToggle({
 	Name = "Overlay Fake Character", -- Name of the toggle | string, required
 	Description = "Shows the baseparts of the client-sided rig, thus setting their Transparency to 0.5.",  -- Description of the toggle | string, optional 
 	CurrentState = false, -- default state of the toggle | bool, optional
