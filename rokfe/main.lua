@@ -25,12 +25,14 @@ local Window = rolibwaita:NewWindow({
 
 local SettingsTab = Window:NewTab({
 	Name = "Settings", -- Name of the tab | string, required
-	Icon = "rbxassetid://16669860992" -- Icon for the tab button | string, optional
+	Icon = "rbxassetid://7245838712" -- Icon for the tab button | string, optional
 })
+
+local separator = Window:NewSeparator()
 
 local MainTab = Window:NewTab({
 	Name = "Main", -- Name of the tab | string, required
-	--Icon = "rbxassetid://16669860992" -- Icon for the tab button | string, optional
+	Icon = "rbxassetid://7245838712" -- Icon for the tab button | string, optional
 })
 
 local SettingsSection = SettingsTab:NewSection({
