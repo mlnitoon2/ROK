@@ -14,6 +14,35 @@
 	https://www.roblox.com/catalog/13421786478/Extra-Torso-Blocky
 ]]
 
+local rolibwaita = loadstring(game:HttpGet("https://codeberg.org/Blukez/rolibwaita/raw/branch/master/Source.lua"))()
+
+local Window = rolibwaita:NewWindow({
+	Name = "ROK FE", -- Name of window | string, required
+	Keybind = "RightShift", -- Keybind to open and close this window | string, required
+	UseCoreGui = true, -- Whether to use coregui / gethui as the gui parent | bool, optional
+	PrintCredits = true -- Whether to print ui library credits and info in the console | bool, optional
+})
+
+local SettingsTab = Window:NewTab({
+	Name = "Settings", -- Name of the tab | string, required
+	Icon = "rbxassetid://16669860992" -- Icon for the tab button | string, optional
+})
+
+local MainTab = Window:NewTab({
+	Name = "Main", -- Name of the tab | string, required
+	--Icon = "rbxassetid://16669860992" -- Icon for the tab button | string, optional
+})
+
+local SettingsSection = SettingsTab:NewSection({
+	Name = "Settings", -- Name of the section | string, required
+	Description = "Customize your settings before you reanimate", -- Description of the section | string, optional 
+})
+
+local MainSection = SettingsTab:NewSection({
+	Name = "Main", -- Name of the section | string, required
+	Description = "Main Stuff", -- Description of the section | string, optional 
+})
+
 Configuration = {
 	ReturnOnDeath = true,
 	Flinging = true,
@@ -28,8 +57,72 @@ Configuration = {
 	RigName = "ROKFE",
 	AccessoryFallbackDefaults = true,
 	OverlayFakeCharacter = false,
-	
+
 	Hats = nil, -- Set to nil if you want to use defaults.
 }
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Krypton/main/Module.luau"))()
+local FlingToggle = SettingsTab:NewToggle({
+	Name = "Fling", -- Name of the toggle | string, required
+	Description = "Uses your server rig to fling people, Left Mouse Click must be held down to enable flinging state upon respawn, the server rig will follow your mouse and attach to body parts until you let the button off.",  -- Description of the toggle | string, optional 
+	CurrentState = true, -- default state of the toggle | bool, optional
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		Configuration.Flinging = value
+	end,
+})
+
+local WaitTimeTextbox = SettingsTab:NewTextBox({
+	Name = "Wait Time", -- Name of the textbox | string, required
+	PlaceholderText = "Yields the CharacterAdded to make sure all the components are ready to use.", -- placeholder text of the textbox | string, optional
+	Text = "Lorem Impulsum", -- text of the textbox | string, optional
+	Trigger = "FocusLost", -- trigger that will execute the callback ( FocusLost or TextChanged ) | string, optional
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		if tonumber(value) then
+			Configuration.WaitTime = value
+		end
+	end,
+})
+
+local NoCollisionToggle = SettingsTab:NewToggle({
+	Name = "No Collision", -- Name of the toggle | string, required
+	Description = "⚠WARNING: In some cases you might get automatically under the map due to your collisions being barely there⚠\nDisables your client rig collisions, letting you clip through walls",  -- Description of the toggle | string, optional 
+	CurrentState = false, -- default state of the toggle | bool, optional
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		Configuration.NoCollisions = value
+	end,
+})
+
+local AntiVoidToggle = SettingsTab:NewToggle({
+	Name = "Anti Void", -- Name of the toggle | string, required
+	Description = "Avoid falling into the void, If you fall into the void you will be sent back to either SpawnLocation or the offset when you reanimated at.",  -- Description of the toggle | string, optional 
+	CurrentState = true, -- default state of the toggle | bool, optional
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		Configuration.AntiVoiding = value
+	end,
+})
+
+local DisableScriptsToggle = SettingsTab:NewToggle({
+	Name = "Disable Character Scripts", -- Name of the toggle | string, required
+	Description = "⚠WARNING: In very special cases, disabling this may break some parts of the experience⚠\nDisables any local scripts from the server rig to avoid any tampering with client rig.",  -- Description of the toggle | string, optional 
+	CurrentState = false, -- default state of the toggle | bool, optional
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		Configuration.DisableCharacterScripts = value
+	end,
+})
+
+local OverlayFakeToggle = SettingsTab:NewToggle({
+	Name = "Overlay Fake Character", -- Name of the toggle | string, required
+	Description = "Shows the baseparts of the client-sided rig, thus setting their Transparency to 0.5.",  -- Description of the toggle | string, optional 
+	CurrentState = false, -- default state of the toggle | bool, optional
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		Configuration.OverlayFakeCharacter = value
+	end,
+})
+
+
+local ReanimateButton = MainSection:NewButton({
+	Name = "Reanimate", -- Name of the button | string, required
+	Description = "Reanimates your character",  -- Description of the button | string, optional 
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Krypton/main/Module.luau"))()
+	end,
+})
