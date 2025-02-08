@@ -125,3 +125,11 @@ local ReanimateButton = MainSection:NewButton({
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Krypton/main/Module.luau"))()
 	end,
 })
+
+local CreditsButton = MainSection:NewButton({
+	Name = "Credits", -- Name of the button | string, required
+	Description = "View the credits",  -- Description of the button | string, optional 
+	Callback = function(value) -- code executed on interaction with the element | function,  optional
+		
+	end,
+})
