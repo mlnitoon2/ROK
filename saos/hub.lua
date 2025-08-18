@@ -35,7 +35,7 @@ local repeatAmounts = 5
 
 local player = game.Players.LocalPlayer
 
-function stealAll()
+function stealAll(rarity)
 	for _, plot in pairs(workspace.Plots:GetChildren()) do
 		local pp = plot.Name
 		local char = player.Character or player.CharacterAdded:Wait()
@@ -58,7 +58,7 @@ function stealAll()
 			if object:IsA("Model") and game.ReplicatedStorage.Objects:FindFirstChild(object.Name) then
 				local billboard = object.Body:FindFirstChild("CharacterBillboard")
 				if not billboard then continue end
-				local isGood = billboard.RarityLabel.Text == "Secret" or billboard.RarityLabel.Text == "Special"
+				local isGood = billboard.RarityLabel.Text == rarity
 				if not isGood then continue end
 				local function addtobase()
 					hrp.CFrame = object.PrimaryPart.CFrame
@@ -100,10 +100,52 @@ end
 
 local StealTab = Window:CreateTab("Troll", 0)
 
-local StealAll = StealTab:CreateButton({
-	Name = "Steal all Secrets/Specials",
+local StealAll1 = StealTab:CreateButton({
+	Name = "Steal all Commons",
 	Callback = function()
-		stealAll()
+		stealAll("Common")
+	end,
+})
+local StealAll2 = StealTab:CreateButton({
+	Name = "Steal all Uncommons",
+	Callback = function()
+		stealAll("Uncommon")
+	end,
+})
+local StealAll3 = StealTab:CreateButton({
+	Name = "Steal all Rares",
+	Callback = function()
+		stealAll("Rare")
+	end,
+})
+local StealAll3 = StealTab:CreateButton({
+	Name = "Steal all Rares",
+	Callback = function()
+		stealAll("Epic")
+	end,
+})
+local StealAll3 = StealTab:CreateButton({
+	Name = "Steal all Rares",
+	Callback = function()
+		stealAll("Legendary")
+	end,
+})local StealAll6 = StealTab:CreateButton({
+	Name = "Steal all Rares",
+	Callback = function()
+		stealAll("Mythic")
+	end,
+})
+local StealAll7 = StealTab:CreateButton({
+	Name = "Steal all Secrets",
+	Callback = function()
+		stealAll("Secret")
+	end,
+})
+
+local StealAll8 = StealTab:CreateButton({
+	Name = "Steal all Specials",
+	Callback = function()
+		stealAll("Special")
 	end,
 })
 
