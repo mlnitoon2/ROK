@@ -91,7 +91,7 @@ function stealAll()
 						Image = 0,
 					})
 				else
-					generalChannel:SendAsync("mine now")
+					--generalChannel:SendAsync("mine now")
 				end
 			end
 		end
@@ -111,7 +111,17 @@ local SellAll = StealTab:CreateButton({
 	Name = "Sell all",
 	Callback = function()
 		for _, object in pairs(workspace.Plots:FindFirstChild(player.Name).Objects:GetChildren()) do
-			game.ReplicatedStorage.Functions.SellEvent:InvokeServer(object)
+			print(`trying to sell {object.Name}`)
+			local sold = game.ReplicatedStorage.Functions.SellEvent:InvokeServer(object)
+			
+			if not sold then
+				Rayfield:Notify({
+					Title = "Unable to sell",
+					Content = `Unable to sell {object.Name}`,
+					Duration = 2,
+					Image = 0,
+				})
+			end
 			task.wait(0.1)
 		end
 	end,
