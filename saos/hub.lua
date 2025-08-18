@@ -98,7 +98,7 @@ function stealAll(rarity)
 	end
 end
 
-local StealTab = Window:CreateTab("Troll", 0)
+local StealTab = Window:CreateTab("Objects", 0)
 
 local StealAll1 = StealTab:CreateButton({
 	Name = "Steal all Commons",
@@ -119,18 +119,18 @@ local StealAll3 = StealTab:CreateButton({
 	end,
 })
 local StealAll3 = StealTab:CreateButton({
-	Name = "Steal all Rares",
+	Name = "Steal all Epics",
 	Callback = function()
 		stealAll("Epic")
 	end,
 })
 local StealAll3 = StealTab:CreateButton({
-	Name = "Steal all Rares",
+	Name = "Steal all Legendarys",
 	Callback = function()
 		stealAll("Legendary")
 	end,
 })local StealAll6 = StealTab:CreateButton({
-	Name = "Steal all Rares",
+	Name = "Steal all Mythics",
 	Callback = function()
 		stealAll("Mythic")
 	end,
@@ -162,7 +162,7 @@ local SellAll = StealTab:CreateButton({
 					Content = `Unable to sell {object.Name}`,
 					Duration = 2,
 					Image = 0,
-				})
+				}) 
 			end
 			task.wait(0.1)
 		end
