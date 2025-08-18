@@ -1,9 +1,12 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+local TextChatService = game:GetService("TextChatService")
+local generalChannel = TextChatService:WaitForChild("TextChannels").RBXGeneral
+
 local Window = Rayfield:CreateWindow({
 	Name = "Steal an Object Show Hub",
 	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-	LoadingTitle = "Steal an Object Show",
+	LoadingTitle = "Steal an Object Show Hub",
 	LoadingSubtitle = "by ROK",
 	ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
 	Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -30,17 +33,28 @@ local Window = Rayfield:CreateWindow({
 
 local repeatAmounts = 5
 
+local player = game.Players.LocalPlayer
+
 function stealAll()
 	for _, plot in pairs(workspace.Plots:GetChildren()) do
-		local plr = game.Players.LocalPlayer
-		local char = plr.Character or plr.CharacterAdded:Wait()
+		local pp = plot.Name
+		local char = player.Character or player.CharacterAdded:Wait()
 		local hrp = char:WaitForChild("HumanoidRootPart")
 
-		local myplot = workspace.Plots:FindFirstChild(plr.Name)
+		local myplot = workspace.Plots:FindFirstChild(player.Name)
 		local mypivot = myplot.Pivot
 
-		if plot.Name == plr.Name then continue end
+		if plot.Name == player.Name then continue end
 		for _, object in pairs(plot.Objects:GetChildren()) do
+			if not plot then
+				Rayfield:Notify({
+					Title = "Player left",
+					Content = `Player {pp} who you were stealing from left the game`,
+					Duration = 3,
+					Image = 0,
+				})
+				continue
+			end
 			if object:IsA("Model") and game.ReplicatedStorage.Objects:FindFirstChild(object.Name) then
 				local billboard = object.Body:FindFirstChild("CharacterBillboard")
 				if not billboard then continue end
@@ -49,7 +63,7 @@ function stealAll()
 				local function addtobase()
 					hrp.CFrame = object.PrimaryPart.CFrame
 					task.wait(0.3)
-					game.ReplicatedStorage.Functions.StealEvent:InvokeServer(object)
+					game.ReplicatedStorage.Functions.StealEvent:InvokeServer(object, true)
 					task.wait(0.3)
 					hrp.CFrame = mypivot.CFrame * CFrame.new(0, 3, 0)
 					task.wait(0.3)
@@ -72,23 +86,33 @@ function stealAll()
 				if failedToAdd then
 					Rayfield:Notify({
 						Title = "Unable to steal",
-						Content = `Unable to steal {nn} after 5 attempts`,
-						Duration = 1,
+						Content = `Unable to steal {nn} from {plot.Name} after 5 attempts`,
+						Duration = 3,
 						Image = 0,
 					})
+				else
+					generalChannel:SendAsync("mine now")
 				end
 			end
 		end
 	end
 end
 
-local StealTab = Window:CreateTab("Stealing", 0)
+local StealTab = Window:CreateTab("Troll", 0)
 
-local StealSection = StealTab:CreateSection("Stealing")
-
-local Button = StealTab:CreateButton({
+local StealAll = StealTab:CreateButton({
 	Name = "Steal all Secrets/Specials",
 	Callback = function()
 		stealAll()
+	end,
+})
+
+local SellAll = StealTab:CreateButton({
+	Name = "Sell all",
+	Callback = function()
+		for _, object in pairs(workspace.Plots:FindFirstChild(player.Name):GetChildren()) do
+			game.ReplicatedStorage.Functions.SellEvent:InvokeServer(object)
+			task.wait(0.1)
+		end
 	end,
 })
