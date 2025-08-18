@@ -110,7 +110,7 @@ local StealAll = StealTab:CreateButton({
 local SellAll = StealTab:CreateButton({
 	Name = "Sell all",
 	Callback = function()
-		for _, object in pairs(workspace.Plots:FindFirstChild(player.Name):GetChildren()) do
+		for _, object in pairs(workspace.Plots:FindFirstChild(player.Name).Objects:GetChildren()) do
 			game.ReplicatedStorage.Functions.SellEvent:InvokeServer(object)
 			task.wait(0.1)
 		end
