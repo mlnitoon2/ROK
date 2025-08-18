@@ -118,13 +118,13 @@ local StealAll3 = StealTab:CreateButton({
 		stealAll("Rare")
 	end,
 })
-local StealAll3 = StealTab:CreateButton({
+local StealAll4 = StealTab:CreateButton({
 	Name = "Steal all Epics",
 	Callback = function()
 		stealAll("Epic")
 	end,
 })
-local StealAll3 = StealTab:CreateButton({
+local StealAll5 = StealTab:CreateButton({
 	Name = "Steal all Legendarys",
 	Callback = function()
 		stealAll("Legendary")
