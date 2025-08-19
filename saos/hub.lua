@@ -3,6 +3,8 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local TextChatService = game:GetService("TextChatService")
 local generalChannel = TextChatService:WaitForChild("TextChannels").RBXGeneral
 
+local PlayerState = require(game.ReplicatedStorage.PlayerState.PlayerStateClient)
+
 local Window = Rayfield:CreateWindow({
 	Name = "Steal an Object Show Hub",
 	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -35,13 +37,14 @@ local repeatAmounts = 5
 
 local player = game.Players.LocalPlayer
 
+local myplot = workspace.Plots:FindFirstChild(player.Name)
+
 function stealAll(rarity)
 	for _, plot in pairs(workspace.Plots:GetChildren()) do
 		local pp = plot.Name
 		local char = player.Character or player.CharacterAdded:Wait()
 		local hrp = char:WaitForChild("HumanoidRootPart")
 
-		local myplot = workspace.Plots:FindFirstChild(player.Name)
 		local mypivot = myplot.Pivot
 
 		if plot.Name == player.Name then continue end
@@ -63,7 +66,7 @@ function stealAll(rarity)
 				local function addtobase()
 					hrp.CFrame = object.PrimaryPart.CFrame
 					task.wait(0.3)
-					game.ReplicatedStorage.Functions.StealEvent:InvokeServer(object, true)
+					game.ReplicatedStorage.Functions.StealEvent:InvokeServer(object, "Steal")
 					task.wait(0.3)
 					hrp.CFrame = mypivot.CFrame * CFrame.new(0, 3, 0)
 					task.wait(0.3)
@@ -85,20 +88,28 @@ function stealAll(rarity)
 				
 				if failedToAdd then
 					Rayfield:Notify({
-						Title = "Unable to steal",
-						Content = `Unable to steal {nn} from {plot.Name} after 5 attempts`,
+						Title = "Failed to steal",
+						Content = `Failed to steal {nn} from {plot.Name}`,
 						Duration = 3,
 						Image = 0,
 					})
 				else
-					--generalChannel:SendAsync("mine now")
+					Rayfield:Notify({
+						Title = "Success!",
+						Content = `Successfully stole {nn} from {plot.Name}`,
+						Duration = 2,
+						Image = 0
+					})
 				end
 			end
 		end
 	end
 end
 
-local StealTab = Window:CreateTab("Objects", 0)
+local StealTab = Window:CreateTab("Stealing", 0)
+local SellTab = Window:CreateTab("Selling", 0)
+
+local UsefulTab = Window:CreateTab("Useful", 0)
 
 local StealAll1 = StealTab:CreateButton({
 	Name = "Steal all Commons",
@@ -149,7 +160,7 @@ local StealAll8 = StealTab:CreateButton({
 	end,
 })
 
-local SellAll = StealTab:CreateButton({
+local SellAll = SellTab:CreateButton({
 	Name = "Sell all",
 	Callback = function()
 		for _, object in pairs(workspace.Plots:FindFirstChild(player.Name).Objects:GetChildren()) do
@@ -158,8 +169,8 @@ local SellAll = StealTab:CreateButton({
 			
 			if not sold then
 				Rayfield:Notify({
-					Title = "Unable to sell",
-					Content = `Unable to sell {object.Name}`,
+					Title = "Failed to sell",
+					Content = `Failed to sell {object.Name}`,
 					Duration = 2,
 					Image = 0,
 				}) 
@@ -168,3 +179,36 @@ local SellAll = StealTab:CreateButton({
 		end
 	end,
 })
+
+local lockdown = false
+
+local AutoLockdown = UsefulTab:CreateToggle({
+	Name = "Auto Lockdown",
+	CurrentValue = false,
+	Flag = "AutoLockdown", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		lockdown = Value
+	end,
+})
+
+local lockdownTime = PlayerState.Get("BaseLockdownTime")
+while true do
+	task.wait(lockdownTime)
+	
+	if not lockdown then continue end
+
+	local char = player.Character or player.CharacterAdded:Wait()
+	local hrp = char:WaitForChild("HumanoidRootPart")
+
+	local prevCF = hrp.CFrame
+
+	for i = 1, 3 do
+
+		hrp.CFrame = myplot.LockBase.CFrame * CFrame.new(0, 3, 0)
+		task.wait(0.2)
+	end
+	
+	task.wait(0.1)
+
+	hrp.CFrame = prevCF
+end
