@@ -140,12 +140,15 @@ local StealAll5 = StealTab:CreateButton({
 	Callback = function()
 		stealAll("Legendary")
 	end,
-})local StealAll6 = StealTab:CreateButton({
+})
+local StealAll6 = StealTab:CreateButton({
 	Name = "Steal all Mythics",
 	Callback = function()
 		stealAll("Mythic")
 	end,
 })
+
+--[[
 local StealAll7 = StealTab:CreateButton({
 	Name = "Steal all Secrets",
 	Callback = function()
@@ -159,7 +162,7 @@ local StealAll8 = StealTab:CreateButton({
 		stealAll("Special")
 	end,
 })
-
+]]
 local SellAll = SellTab:CreateButton({
 	Name = "Sell all",
 	Callback = function()
@@ -193,9 +196,9 @@ local AutoLockdown = UsefulTab:CreateToggle({
 
 local lockdownTime = PlayerState.Get("BaseLockdownTime")
 while true do
-	task.wait(lockdownTime)
-	
-	if not lockdown then continue end
+	repeat
+		task.wait(0.1)
+	until myplot.LockBase.BillboardGui.TextLabel.Text == "0"
 
 	local char = player.Character or player.CharacterAdded:Wait()
 	local hrp = char:WaitForChild("HumanoidRootPart")
