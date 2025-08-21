@@ -38,14 +38,13 @@ local repeatAmounts = 5
 local player = game.Players.LocalPlayer
 
 local myplot = workspace.Plots:FindFirstChild(player.Name)
+local mypivot = myplot.Pivot
 
 function stealAll(rarity)
 	for _, plot in pairs(workspace.Plots:GetChildren()) do
 		local pp = plot.Name
 		local char = player.Character or player.CharacterAdded:Wait()
 		local hrp = char:WaitForChild("HumanoidRootPart")
-
-		local mypivot = myplot.Pivot
 
 		if plot.Name == player.Name then continue end
 		for _, object in pairs(plot.Objects:GetChildren()) do
@@ -111,12 +110,15 @@ local SellTab = Window:CreateTab("Selling", 0)
 
 local UsefulTab = Window:CreateTab("Useful", 0)
 
+--[[
+
 local StealAll1 = StealTab:CreateButton({
 	Name = "Steal all Commons",
 	Callback = function()
 		stealAll("Common")
 	end,
 })
+]]
 local StealAll2 = StealTab:CreateButton({
 	Name = "Steal all Uncommons",
 	Callback = function()
@@ -194,24 +196,76 @@ local AutoLockdown = UsefulTab:CreateToggle({
 	end,
 })
 
-local lockdownTime = PlayerState.Get("BaseLockdownTime")
-while true do
-	repeat
+local stealAura = false
+
+local stealAuraBtn = StealTab:CreateToggle({
+	Name = "StealAura",
+	CurrentValue = false,
+	Flag = "StealAura", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		stealAura = Value
+	end,
+})
+
+-- Auto Lockdown
+
+coroutine.wrap(function()
+	local lockdownTime = PlayerState.Get("BaseLockdownTime")
+	while true do
+		repeat
+			task.wait(0.1)
+		until myplot.LockBase.BillboardGui.TextLabel.Text == "Lock Base"
+		
+		if not lockdown then continue end
+
+		local char = player.Character or player.CharacterAdded:Wait()
+		local hrp = char:WaitForChild("HumanoidRootPart")
+
+		local prevCF = hrp.CFrame
+
+		for i = 1, 3 do
+
+			hrp.CFrame = myplot.LockBase.CFrame * CFrame.new(0, 3, 0)
+			task.wait(0.2)
+		end
+
 		task.wait(0.1)
-	until myplot.LockBase.BillboardGui.TextLabel.Text == "0"
 
-	local char = player.Character or player.CharacterAdded:Wait()
-	local hrp = char:WaitForChild("HumanoidRootPart")
-
-	local prevCF = hrp.CFrame
-
-	for i = 1, 3 do
-
-		hrp.CFrame = myplot.LockBase.CFrame * CFrame.new(0, 3, 0)
-		task.wait(0.2)
+		hrp.CFrame = prevCF
 	end
-	
-	task.wait(0.1)
+end)()
 
-	hrp.CFrame = prevCF
-end
+-- Steal Aura
+
+coroutine.wrap(function()
+	while task.wait(0.1) do
+		if not stealAura then continue end
+		
+		local char = player.Character or player.CharacterAdded:Wait()
+		local hrp = char:WaitForChild("HumanoidRootPart")
+		
+		for _, plot in pairs(workspace.Plots:GetChildren()) do
+			local plotOwner = plot.Name
+			
+			if player.Name == plotOwner then continue end
+			
+			for _, object in pairs(plot.Objects:GetChildren()) do
+				
+				local function addtobase()
+					hrp.CFrame = object.PrimaryPart.CFrame
+					task.wait(0.3)
+					game.ReplicatedStorage.Functions.StealEvent:InvokeServer(object, "Steal")
+					task.wait(0.3)
+					hrp.CFrame = mypivot.CFrame * CFrame.new(0, 3, 0)
+					task.wait(0.3)
+				end
+				
+				if (hrp.Position - object.PrimaryPart.Position).Magnitude < 10 then
+					addtobase()
+					
+					task.wait(0.1)
+				end
+			end
+		end
+	end
+end)()
